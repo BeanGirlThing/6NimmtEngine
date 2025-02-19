@@ -3,3 +3,4 @@ datafile.json
 __pycache__
 players/__pycache__
 logs
+.run

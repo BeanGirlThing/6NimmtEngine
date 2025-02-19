@@ -9,6 +9,7 @@ from django.utils.text import slugify
 import os
 import sys
 import datetime
+import enlighten
 
 
 def get_logfile_absolute_path(path: str = None):
@@ -39,12 +40,10 @@ class Main:
 
     def __init__(self):
         # Logging Junk
-        self.logger = logging.getLogger("6NimmtEngine")
-        self.logger.setLevel(logging.DEBUG)
         logging_file_handler = logging.FileHandler(get_logfile_absolute_path())
         logging_file_handler.setLevel(logging.DEBUG)
         logging_stream_handler = logging.StreamHandler(sys.stdout)
-        logging_stream_handler.setLevel(logging.INFO)
+        logging_stream_handler.setLevel(logging.WARNING)
 
         logging_formatter = logging.Formatter(
             fmt='[%(asctime)s][%(levelname)s][%(name)s] - %(message)s',
@@ -53,6 +52,9 @@ class Main:
 
         logging_file_handler.setFormatter(logging_formatter)
         logging_stream_handler.setFormatter(logging_formatter)
+
+        self.logger = logging.getLogger("6NimmtEngine")
+        self.logger.setLevel(logging.DEBUG)
 
         self.logger.addHandler(logging_file_handler)
         self.logger.addHandler(logging_stream_handler)
@@ -80,6 +82,10 @@ class Main:
         # Get GAMES_TO_PLAY variable from config
         self.GAMES_TO_PLAY = int(self.config["engine"]["games_to_play"])
 
+        enlighten_manager = enlighten.get_manager()
+        status_bar = enlighten_manager.status_bar('Engine Running', color='black_on_white', justify=enlighten.Justify.CENTER)
+        engine_progress_bar = enlighten_manager.counter(total=self.GAMES_TO_PLAY, desc="Configuration", unit="games", color="green")
+
         for i in range(self.GAMES_TO_PLAY):
             self.logger.info(f"Game Number {i} - Setting up")
             self.setup_game()
@@ -106,11 +112,17 @@ class Main:
                     self.data["player_names"].append(player.name)
                 player.reset()
 
+            engine_progress_bar.update()
+
         self.logger.info("Writing data to datafile.json")
         with open("datafile.json", "w") as f:
             f.write(json.dumps(self.data))
 
         self.logger.info("Done!")
+        status_bar.color = "black_on_green"
+        status_bar.update("Engine Done!")
+        enlighten_manager.stop()
+        print("\n")
 
     def setup_game(self):
         self.logger.debug("Generating deck & shuffling")
