@@ -1,5 +1,4 @@
-from card import Card
-
+from engine.card import Card
 
 class Hand(object):
     cards = None

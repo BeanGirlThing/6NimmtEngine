@@ -1,6 +1,6 @@
 from players.Player import Player
-from card import Card
-from hand import Hand
+from engine.card import Card
+from engine.hand import Hand
 
 
 class LowestHighest(Player):
@@ -16,7 +16,7 @@ class LowestHighest(Player):
         hand.cards.sort(key=lambda card: card.value, reverse=False)
         self.hand = hand
 
-    def turn(self, game_board, previous_round_played_cards: list) -> Card:
+    def turn(self, game_board, previous_round_played_cards: list, round_number: int) -> Card:
         return self.hand.remove_card(0)
 
     def take_selected_row(self, game_board, current_round_played_cards: list) -> int:

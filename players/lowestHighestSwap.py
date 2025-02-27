@@ -1,6 +1,6 @@
 from players.Player import Player
-from card import Card
-from hand import Hand
+from engine.card import Card
+from engine.hand import Hand
 
 
 class LowestHighestSwap(Player):
@@ -17,7 +17,7 @@ class LowestHighestSwap(Player):
         hand.cards.sort(key=lambda card: card.value, reverse=False)
         self.hand = hand
 
-    def turn(self, game_board, previous_round_played_cards: list) -> Card:
+    def turn(self, game_board, previous_round_played_cards: list, round_number: int) -> Card:
         if len(self.hand.cards) >= 5:
             return self.hand.remove_card(0)
         else:

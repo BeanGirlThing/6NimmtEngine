@@ -1,5 +1,5 @@
 from players.Player import Player
-from card import Card
+from engine.card import Card
 import random
 
 
@@ -12,7 +12,7 @@ class RandomPlay(Player):
     def __init__(self):
         super().__init__("Random")
 
-    def turn(self, game_board, previous_round_played_cards: list) -> Card:
+    def turn(self, game_board, previous_round_played_cards: list, round_number: int) -> Card:
         return self.hand.remove_card(random.randint(0, len(self.hand.cards)-1))
 
     def take_selected_row(self, game_board, current_round_played_cards: list) -> int:

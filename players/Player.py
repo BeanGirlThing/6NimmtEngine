@@ -1,5 +1,5 @@
-from hand import Hand
-from card import Card
+from engine import Hand
+from engine import Card
 import logging
 
 class Player:
@@ -10,13 +10,11 @@ class Player:
 
     def __init__(self, name: str):
         self.name = name
-        self.logger = logging.getLogger(f"6NimmtEngine.Bot - {name}")
-        self.logger.info("Initialising bot")
 
     def set_hand(self, hand: Hand):
         self.hand = hand
 
-    def turn(self, game_board, previous_round_played_cards: list) -> Card:
+    def turn(self, game_board, previous_round_played_cards: list, round_number: int) -> Card:
         return Card(0, 0)
 
     def add_to_score(self, score: int):

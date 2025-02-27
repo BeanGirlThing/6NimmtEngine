@@ -1,3 +1,7 @@
+"""
+Credit goes to https://github.com/bertie2 for this wrapper
+"""
+
 import multiprocessing
 import threading
 import time
