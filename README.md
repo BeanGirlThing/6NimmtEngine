@@ -1,4 +1,5 @@
-# 6Nimmt Engine
+# 6Nimmt Engine - Multiprocessing Alpha
+## This is the Alpha development branch for multiprocessing support, for the time being it has been put aside. 
 ## In development
 For running the 6Nimmt bot tournament!
 
