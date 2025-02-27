@@ -10,7 +10,7 @@ import os
 import sys
 import datetime
 import enlighten
-
+import enlightenMpWrapper
 
 def get_logfile_absolute_path(path: str = None):
     if path is None:
@@ -82,7 +82,7 @@ class Main:
         # Get GAMES_TO_PLAY variable from config
         self.GAMES_TO_PLAY = int(self.config["engine"]["games_to_play"])
 
-        enlighten_manager = enlighten.get_manager()
+        enlighten_manager = enlightenMpWrapper.Server()
         status_bar = enlighten_manager.status_bar('Engine Running', color='black_on_white', justify=enlighten.Justify.CENTER)
         engine_progress_bar = enlighten_manager.counter(total=self.GAMES_TO_PLAY, desc="Configuration", unit="games", color="green")
 
