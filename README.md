@@ -1,4 +1,4 @@
-# 6Nimmt Engine
+# 6Nimmt Engine - Single Thread
 ## In development
 For running the 6Nimmt bot tournament!
 
