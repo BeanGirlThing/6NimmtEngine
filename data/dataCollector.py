@@ -1,0 +1,2 @@
+class DataCollector(object):
+    pass

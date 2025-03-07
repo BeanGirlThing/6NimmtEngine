@@ -1,5 +1,5 @@
-from hand import Hand
-from card import Card
+from engine.hand import Hand
+from engine.card import Card
 import logging
 
 class Player:

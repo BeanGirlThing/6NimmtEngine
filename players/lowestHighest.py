@@ -1,6 +1,6 @@
 from players.Player import Player
-from card import Card
-from hand import Hand
+from engine.card import Card
+from engine.hand import Hand
 
 
 class LowestHighest(Player):

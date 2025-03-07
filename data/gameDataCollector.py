@@ -1,0 +1,3 @@
+
+class GameDataCollector(object):
+    pass

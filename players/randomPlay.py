@@ -1,5 +1,5 @@
 from players.Player import Player
-from card import Card
+from engine.card import Card
 import random
 
 
